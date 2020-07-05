@@ -12,8 +12,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332){
     else{
         pollutantlabel <- 3
     }    
-    sum <- 0 ## set the initial value of sum of means from different monitors
-    useful_length <- 0
+    sum <- 0 ## set the initial value of sum of means from different monitors.
+    useful_length <- 0 ## set the initial value of length of none NA data.
     for (i in id){
         ## The following is for generating the file name with ID#.
         if (i < 10 && i >= 1){
@@ -31,7 +31,7 @@ pollutantmean <- function(directory, pollutant, id = 1:332){
         }
         ## The following is for reading the files.
         data <- read.csv(file_name)
-        ##
+        ## The following is for calculate the none NA sum and none NA # of values.
         data_useful <- data[[pollutantlabel]][complete.cases(data[[pollutantlabel]])]
         sum <- sum + mean(data_useful, na.rm = TRUE) * length(data_useful)
         useful_length <- useful_length + length(data_useful)
