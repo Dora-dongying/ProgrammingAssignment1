@@ -5,7 +5,7 @@ pollutantmean <- function(directory, pollutant, id = 1:332){
   ## pollutant, either "sulfate" or "nitrate".
   ## 'id' is an integer vector indicating the monitor ID.
   ## Return the mean value of the pollutant level in interested monitor range.
-    #setwd(directory)
+    setwd(directory)
     if (pollutant == 'sulfate'){
         pollutantlabel <- 2
     }
@@ -33,9 +33,12 @@ pollutantmean <- function(directory, pollutant, id = 1:332){
         data <- read.csv(file_name)
         ## The following is for calculate the none NA sum and none NA # of values.
         data_useful <- data[[pollutantlabel]][complete.cases(data[[pollutantlabel]])]
-        sum <- sum + mean(data_useful, na.rm = TRUE) * length(data_useful)
-        useful_length <- useful_length + length(data_useful)
+        if (length(data_useful != 0)){
+          sum <- sum + mean(data_useful, na.rm = TRUE) * length(data_useful)
+          useful_length <- useful_length + length(data_useful)
+        }
     }
     res <- sum/useful_length
+    setwd('..')
     res
 }

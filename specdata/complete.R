@@ -7,6 +7,7 @@ complete <- function(directory, id = 1:332){
   ## 1    117
   ## 2    1041
   ## ...
+    setwd(directory)
     my_nobs <- integer(length = length(id))
     j <- 1
     for (i in id){
@@ -31,5 +32,6 @@ complete <- function(directory, id = 1:332){
       j <- j + 1
     }
     res <- data.frame("id" = id, "nobs" = my_nobs)
+    setwd('..')
     res
 }

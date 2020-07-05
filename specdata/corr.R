@@ -5,6 +5,7 @@ corr <- function(directory, threshold = 0){
   ## observations required to compute the correlation between sulfate and nitrate;
   ## default is zero.
   ## Return a numeric vector of correlations.
+    setwd(directory)
     res <- numeric()
     j <- 1 ## Create a vector for res, j is the res index.
     for (i in 1:332){
@@ -29,5 +30,6 @@ corr <- function(directory, threshold = 0){
         j <- j +1
       }
     }
+    setwd('..')
     res
 }
